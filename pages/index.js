@@ -115,18 +115,18 @@ const Home = ({categories}) => {
   )
 }
 
-Home.getInitialProps = async () => {
-   console.log(process.env.API);
-   console.log("hello")
-  const response = await axios.get(
-    `http://hackrio-backend.herokuapp.com/api/categories`
-  );
-  console.log(process.env.API, response);
-
-
+export async function getServerSideProps() {
+    const response = await axios.get(
+      `${process.env.API}/categories`
+    );
+    // const categories = await response.data;
   return {
-    categories: response.data
-  }
+    props: {
+      categories: response.data,
+    },
+  };
 }
+
+
 
 export default Home

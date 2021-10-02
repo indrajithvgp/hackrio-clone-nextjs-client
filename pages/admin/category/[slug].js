@@ -138,11 +138,19 @@ function Update( {token, oldCategory}){
     );
 };
 
-Update.getInitialProps = async ({ req, query, token }) => {
-    const response = await axios.post(
-      `${process.env.API}/category/${query.slug}`
-    );
-    return { oldCategory: response.data.category, token };
-};  
+export async function getServerSideProps({ req, res, params }) {
+  const response = await axios.post(
+    `${process.env.API}/category/${params.slug}`
+  );
+  return {
+    props: {
+      oldCategory: response.data.category,
+      token,
+    },
+  };
+}
+
+
+ 
 
 export default withAdmin(Update);

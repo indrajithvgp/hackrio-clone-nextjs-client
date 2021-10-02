@@ -180,24 +180,25 @@ const Links = ({query, data, category, links, totalLinks, linkSkip, linksLimit})
     </>
 } 
 
-Links.getInitialProps = async ({query, req}) => {
-    let skip = 0
-    let limit = 1
+export async function getServerSideProps({ req, res, params }) {
+  let skip = 0;
+  let limit = 1;
 
-    const response = await axios.post(
-      `${process.env.API}/category/${query.slug}`,
-      { skip, limit }
-    );
+  const response = await axios.post(
+    `${process.env.API}/category/${params.slug}`,
+    { skip, limit }
+  );
+  return {
+    props: {
+      params,
+      category: response.data.category,
+      links: response.data.data,
+      totalLinks: response.data.data.length,
+      linksLimit: limit,
+      linkSkip: skip,
+    },
+  };
+}
 
-    return {
-        query,
-        category: response.data.category,
-        links: response.data.data,
-        totalLinks: response.data.data.length,
-        linksLimit: limit,
-        linkSkip: skip,
-    }
-
-}   
 
 export default Links
