@@ -4,7 +4,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import { showSuccessMessage, showErrorMessage } from '../../../helpers/alerts';
 import Layout from '../../../components/Layout';
-import withAdmin from '../../admin/withAdmin';
+import withAdminReq from '../../admin/withAdmin';
 
 
 const API = process.env.API;

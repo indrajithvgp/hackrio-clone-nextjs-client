@@ -6,7 +6,7 @@ const ReactQuill = dynamic(() => import('react-quill'), {ssr: false})
 import Resizer from "react-image-file-resizer";
 // import {API} from '../../index'
 import Layout from '../../../components/Layout'
-import withAdmin from '../withAdmin'
+import withAdminReq from '../withAdmin'
 import { showErrorMessage, showSuccessMessage } from '../../../helpers/alerts'
 import "react-quill/dist/quill.bubble.css"
 
