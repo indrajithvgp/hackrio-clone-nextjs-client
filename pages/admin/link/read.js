@@ -179,7 +179,7 @@ export const getServerSideProps = withAdminReq(async (context) => {
   };
 });
 
-
+export default Links;
 {/* <InfiniteScroll
                 pageStart={0}
                 loadMore={loadMore}

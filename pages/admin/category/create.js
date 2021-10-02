@@ -142,6 +142,6 @@ export const getServerSideProps = withAdminReq(async (context) => {
     },
   };
 });
-
+export default Create;
 
 // export default withAdmin(Create)

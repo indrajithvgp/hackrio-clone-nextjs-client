@@ -163,5 +163,5 @@ export const getServerSideProps = withAdminReq(async (context) => {
 });
 
  
-
+export default Update;
 // export default withAdmin(Update);

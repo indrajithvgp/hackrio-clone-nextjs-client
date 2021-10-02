@@ -103,4 +103,5 @@ export const getServerSideProps = withAdminReq(async (context) => {
     props: {},
   };
 });
+export default Read;
 // export default withAdmin(Read);
