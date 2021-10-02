@@ -7,7 +7,7 @@ import {Router} from 'next/router'
 // import { API } from '../../index';
 import { showSuccessMessage, showErrorMessage } from '../../../helpers/alerts';
 import Layout from '../../../components/Layout';
-import withAdmin from '../withAdmin';
+import withAdminReq from '../withAdmin';
 import 'react-quill/dist/quill.bubble.css';
 
 const API = process.env.API;
@@ -138,9 +138,21 @@ function Update( {token, oldCategory}){
     );
 };
 
-export async function getServerSideProps({ req, res, params }) {
+// export async function getServerSideProps({ req, res, params }) {
+//   const response = await axios.post(
+//     `${process.env.API}/category/${params.slug}`
+//   );
+//   return {
+//     props: {
+//       oldCategory: response.data.category,
+//       token,
+//     }, 
+//   };
+// }
+
+export const getServerSideProps = withAdminReq(async (context) => {
   const response = await axios.post(
-    `${process.env.API}/category/${params.slug}`
+    `${process.env.API}/category/${context.params.slug}`
   );
   return {
     props: {
@@ -148,9 +160,8 @@ export async function getServerSideProps({ req, res, params }) {
       token,
     },
   };
-}
-
+});
 
  
 
-export default withAdmin(Update);
+// export default withAdmin(Update);

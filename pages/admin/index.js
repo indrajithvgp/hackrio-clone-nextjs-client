@@ -1,5 +1,5 @@
 import Layout from '../../components/Layout'
-import withAdmin from './withAdmin'
+import withAdminReq from './withAdmin'
 import Link from 'next/link'
 
 const Admin = ({user, token}) => <Layout>
@@ -37,4 +37,10 @@ const Admin = ({user, token}) => <Layout>
 
 </Layout>
 
-export default withAdmin(Admin)
+export const getServerSideProps = withAdminReq(async (context) => {
+  return {
+    props: {},
+  };
+});
+
+// export default withAdmin(Admin)

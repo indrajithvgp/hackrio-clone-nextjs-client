@@ -136,6 +136,12 @@ const Create = ({token, user})=>{
     )
 }
 
+export const getServerSideProps = withAdminReq(async (context) => {
+  return {
+    props: {
+    },
+  };
+});
 
 
-export default withAdmin(Create)
+// export default withAdmin(Create)

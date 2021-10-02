@@ -237,15 +237,25 @@ const Update = ({ oldLink, token }) => {
   );
 };
 
-export async function getServerSideProps({ req, res, params }) {
-  const response = await axios.get(`${process.env.API}/link/${params.id}`);
-  console.log("hola link")
+// export async function getServerSideProps({ req, res, params }) {
+//   const response = await axios.get(`${process.env.API}/link/${params.id}`);
+//   console.log("hola link")
+//   return {
+//     props: {
+//       oldLink: response.data,
+//       token,
+//     },
+//   };
+// }
+Update.getInitialProps = async ({query}) => {
+  const response = await axios.get(`${process.env.API}/link/${query.id}`);
+  console.log("hola link");
   return {
     props: {
       oldLink: response.data,
       token,
     },
   };
-}
+};
 
 export default withUser(Update);

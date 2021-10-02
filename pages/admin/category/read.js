@@ -98,4 +98,9 @@ const Read = ({ user, token }) => {
     );
 };
 
-export default withAdmin(Read);
+export const getServerSideProps = withAdminReq(async (context) => {
+  return {
+    props: {},
+  };
+});
+// export default withAdmin(Read);

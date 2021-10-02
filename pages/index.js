@@ -118,7 +118,7 @@ const Home = ({categories}) => {
 export async function getServerSideProps() {
     const response = await axios.get(
       `${process.env.API}/categories`
-    );
+    ); 
     // const categories = await response.data;
   return {
     props: {

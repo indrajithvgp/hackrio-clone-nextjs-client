@@ -6,7 +6,7 @@ import renderHTML from 'react-render-html';
 import moment from 'moment';
 // import { API } from '../../index';
 import InfiniteScroll from 'react-infinite-scroller';
-import withAdmin from '../withAdmin';
+import  withAdminReq from '../withAdmin';
 import { getCookie } from '../../../helpers/auth';
 
 
@@ -124,32 +124,60 @@ const Links = ({ data, token, links, totalLinks, linksLimit, linkSkip }) => {
     );
 };
 
-Links.getInitialProps = async ({ req }) => {
+// Links.getInitialProps = async ({ req }) => {
+//     let skip = 0;
+//     let limit = 2;
+
+//     const token = getCookie('token', req);
+
+//     const response = await axios.post(
+//         `${process.env.API}/links`,
+//         { skip, limit },
+//         {
+//             headers: {
+//                 Authorization: `Bearer ${token}`
+//             }
+//         }
+//     );
+//     return {
+//         data: response.data,
+//         links: response.data,
+//         totalLinks: response.data.length,
+//         linksLimit: limit,
+//         linkSkip: skip,
+//         token
+//     };
+// };
+
+// export default withAdmin(Links);
+
+export const getServerSideProps = withAdminReq(async (context) => {
     let skip = 0;
     let limit = 2;
 
-    const token = getCookie('token', req);
+    const token = getCookie("token", req);
 
     const response = await axios.post(
-        `${process.env.API}/links`,
-        { skip, limit },
-        {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }
+      `${process.env.API}/links`,
+      { skip, limit },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
-    return {
-        data: response.data,
-        links: response.data,
-        totalLinks: response.data.length,
-        linksLimit: limit,
-        linkSkip: skip,
-        token
-    };
-};
 
-export default withAdmin(Links);
+  return {
+    props: {
+      data: response.data,
+      links: response.data,
+      totalLinks: response.data.length,
+      linksLimit: limit,
+      linkSkip: skip,
+      token,
+    },
+  };
+});
 
 
 {/* <InfiniteScroll

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {useState, useEffect} from 'react'
-import withAdmin from '../withAdmin'
+import withAdminReq from '../withAdmin'
 import Layout from '../../../components/Layout'
 import {showErrorMessage, showSuccessMessage} from '../../../helpers/alerts'
 // import {API} from '../../index'
@@ -198,8 +198,18 @@ const Update = ({oldLink, token})=>{
     )
 }
 
-Update.getInitialProps = async ({ req, query, token }) => {
-    const response = await axios.get(`${process.env.API}/link/${query.id}`);
-    return { oldLink: response.data, token };
-};  
-export default withAdmin(Update)
+// Update.getInitialProps = async ({ req, query, token }) => {
+//     const response = await axios.get(`${process.env.API}/link/${query.id}`);
+//     return { oldLink: response.data, token };
+// };  
+// export default withAdmin(Update)
+
+export const getServerSideProps = withAdminReq(async (context) => {
+ const response = await axios.get(`${process.env.API}/link/${context.params.id}`);
+  return {
+    props: {
+      oldLink: response.data,
+      token,
+    },
+  };
+});
