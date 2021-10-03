@@ -133,6 +133,7 @@ const Register = () => {
             <hr/>
         </div>
     </Layout>
+    
   )
 }
 
