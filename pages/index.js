@@ -5,10 +5,10 @@ import axios from "axios";
 import Link from "next/link";
 import moment from "moment";
 
-const API = "http://hackrio-server.herokuapp.com/api";
+const API = "https://hackrio-server.herokuapp.com/api";
 const Home = ({ categories }) => {
   const [popular, setPopular] = useState([]);
-  const API = "http://hackrio-server.herokuapp.com/api";
+  const API = "https://hackrio-server.herokuapp.com/api";
 
   useEffect(() => {
     console.log("works..");
@@ -16,8 +16,7 @@ const Home = ({ categories }) => {
   }, []);
 
   const loadPopular = async () => {
-    console.log(process.env.API);
-    if (process.env.API) {
+    if (API) {
       const response = await axios.get(`${API}/link/popular`);
       setPopular(response.data);
     }
@@ -103,7 +102,7 @@ const Home = ({ categories }) => {
 };
 
 // export async function getServerSideProps() {
-//   const API = "http://hackrio-server.herokuapp.com/api";
+//   const API = "https://hackrio-server.herokuapp.com/api";
 //     const response = await axios.get(
 //       `${API}/categories`
 //     );
@@ -116,7 +115,7 @@ const Home = ({ categories }) => {
 // }
 Home.getInitialProps = async() => {
   console.log("hola from home")
-  const API = "http://hackrio-server.herokuapp.com/api";
+  const API = "https://hackrio-server.herokuapp.com/api";
    console.log(API);
   const response = await axios.get(`${API}/categories`);
   // const categories = await response.data;

@@ -8,9 +8,9 @@ import { showErrorMessage, showSuccessMessage } from '../helpers/alerts'
 import {isAuth} from '../helpers/auth'
 
 
-const API = "http://hackrio-server.herokuapp.com/api";
+const API = "https://hackrio-server.herokuapp.com/api";
 const Register = () => {
-    const API = "http://hackrio-server.herokuapp.com/api";
+    const API = "https://hackrio-server.herokuapp.com/api";
 
     const [state, setState] = useState({
         name: '',

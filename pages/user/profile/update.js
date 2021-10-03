@@ -8,9 +8,9 @@ import { isAuth, updateUser } from '../../../helpers/auth';
 import withUser from '../withUser';
 
 
-const API = "http://hackrio-server.herokuapp.com/api";
+const API = "https://hackrio-server.herokuapp.com/api";
 const Profile = ({ user, token }) => {
-    const API = "http://hackrio-server.herokuapp.com/api";
+    const API = "https://hackrio-server.herokuapp.com/api";
     const [state, setState] = useState({
         name: user.name,
         email: user.email,

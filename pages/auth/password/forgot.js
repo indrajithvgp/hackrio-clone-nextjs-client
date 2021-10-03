@@ -5,9 +5,9 @@ import {showErrorMessage, showSuccessMessage} from '../../../helpers/alerts'
 // import {API} from '../../index'
 import Layout from '../../../components/Layout'
 
-const API = "http://hackrio-server.herokuapp.com/api";
+const API = "https://hackrio-server.herokuapp.com/api";
 const ForgotPassword = () =>{
-    const API = "http://hackrio-server.herokuapp.com/api";
+    const API = "https://hackrio-server.herokuapp.com/api";
     const [state, setState] = useState({
         email: '',
         buttonText:'Forgot Password',

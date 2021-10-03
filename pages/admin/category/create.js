@@ -13,7 +13,7 @@ import "react-quill/dist/quill.bubble.css"
 
 
 const Create = ({token, user})=>{
-const API = "http://hackrio-server.herokuapp.com/api";
+const API = "https://hackrio-server.herokuapp.com/api";
     // const {token, user} = props
     const [state, setState] = useState({
         name: '',

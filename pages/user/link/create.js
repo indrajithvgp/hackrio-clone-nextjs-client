@@ -7,9 +7,9 @@ import withUser from '../withUser'
 import { getCookie, isAuth} from '../../../helpers/auth'
 
 
-const API = "http://hackrio-server.herokuapp.com/api";
+const API = "https://hackrio-server.herokuapp.com/api";
 const Create = ({token})=>{
-    const API = "http://hackrio-server.herokuapp.com/api";
+    const API = "https://hackrio-server.herokuapp.com/api";
     const [state, setState] = useState({
         title: '',
         url: '',

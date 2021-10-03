@@ -10,10 +10,10 @@ import Layout from '../../../components/Layout';
 import withAdmin from '../withAdmin';
 import 'react-quill/dist/quill.bubble.css';
 
-// http://hackrio-server.herokuapp.com/api
+// https://hackrio-server.herokuapp.com/api
 
 function Update( {token, oldCategory}){
-    const API = "http://hackrio-server.herokuapp.com/api";
+    const API = "https://hackrio-server.herokuapp.com/api";
     const [state, setState] = useState({
         name: oldCategory.name,
         error: '',
@@ -140,8 +140,9 @@ function Update( {token, oldCategory}){
 };
 
 Update.getInitialProps = async ({ req, query, token }) => {
+    const API = "https://hackrio-server.herokuapp.com/api";
   const response = await axios.post(
-    `${process.env.API}/category/${query.slug}`
+    `${API}/category/${query.slug}`
   );
   return {
     oldCategory: response.data.category,

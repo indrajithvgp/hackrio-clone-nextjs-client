@@ -44,7 +44,7 @@ import { getCookie } from '../../helpers/auth';
 // }
 
 const withAdmin = Page => {
-    const API = "http://hackrio-server.herokuapp.com/api";
+    const API = "https://hackrio-server.herokuapp.com/api";
     const WithAdminUser = props => <Page {...props} />;
     WithAdminUser.getInitialProps = async context => {
         const token = getCookie('token', context.req);
@@ -53,7 +53,7 @@ const withAdmin = Page => {
         if (token) {
             try {
                 const response = await axios.get(
-                  `http://hackrio-server.herokuapp.com/api/admin`,
+                  `https://hackrio-server.herokuapp.com/api/admin`,
                   {
                     headers: {
                       authorization: `Bearer ${token}`,

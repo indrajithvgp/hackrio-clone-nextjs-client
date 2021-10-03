@@ -10,9 +10,9 @@ import  withAdmin from '../withAdmin';
 import { getCookie } from '../../../helpers/auth';
 
 
-const API = process.env.API;
+const API = "https://hackrio-server.herokuapp.com/api";
 const Links = ({ data, token, links, totalLinks, linksLimit, linkSkip }) => {
-    const API = "http://hackrio-server.herokuapp.com/api";
+    const API = "https://hackrio-server.herokuapp.com/api";
     const [allLinks, setAllLinks] = useState(links);
     const [limit, setLimit] = useState(linksLimit);
     const [skip, setSkip] = useState(0);
@@ -21,7 +21,7 @@ const Links = ({ data, token, links, totalLinks, linksLimit, linkSkip }) => {
     async function handleDelete(id){
         try{
             const response = await axios.delete(
-              `http://hackrio-server.herokuapp.com/api/link/${id}`,
+              `https://hackrio-server.herokuapp.com/api/link/${id}`,
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
@@ -134,7 +134,7 @@ Links.getInitialProps = async ({ req }) => {
     const token = getCookie('token', req);
 
     const response = await axios.post(
-      `http://hackrio-server.herokuapp.com/api/links`,
+      `https://hackrio-server.herokuapp.com/api/links`,
       { skip, limit },
       {
         headers: {

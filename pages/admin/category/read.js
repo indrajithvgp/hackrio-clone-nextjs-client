@@ -9,7 +9,7 @@ import withAdmin from '../../admin/withAdmin';
 
 
 const Read = ({ user, token }) => {
-    const API = "http://hackrio-server.herokuapp.com/api";
+    const API = "https://hackrio-server.herokuapp.com/api";
     const [state, setState] = useState({
         error: '',
         success: '',

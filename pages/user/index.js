@@ -7,10 +7,10 @@ import Router from 'next/router';
 import { getCookie } from '../../helpers/auth';
 import withUser from './withUser';
 
-const API = "http://hackrio-server.herokuapp.com/api";
+const API = "https://hackrio-server.herokuapp.com/api";
 
 const User = ({ user, userLinks, token }) => {
-    const API = "http://hackrio-server.herokuapp.com/api";
+    const API = "https://hackrio-server.herokuapp.com/api";
     const confirmDelete = (e, id) => {
         e.preventDefault();
         // console.log('delete > ', slug);

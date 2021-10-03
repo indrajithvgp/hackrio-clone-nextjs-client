@@ -9,7 +9,7 @@ import moment from "moment";
 import { withRouter } from "next/router";
 import InfiniteScroll from "react-infinite-scroller";
 
-const API = "http://hackrio-server.herokuapp.com/api";
+const API = "https://hackrio-server.herokuapp.com/api";
 const Links = ({
   query,
   data,
@@ -19,7 +19,7 @@ const Links = ({
   linkSkip,
   linksLimit,
 }) => {
-  const API = "http://hackrio-server.herokuapp.com/api";
+  const API = "https://hackrio-server.herokuapp.com/api";
 
   const [allLinks, setAllLinks] = useState(links);
   const [limit, setLimit] = useState(linksLimit);
@@ -191,7 +191,7 @@ const Links = ({
 Links.getInitialProps = async ({ query }) => {
   let skip = 0;
   let limit = 1;
-  const API = "http://hackrio-server.herokuapp.com/api";
+  const API = "https://hackrio-server.herokuapp.com/api";
   const response = await axios.post(`${API}/category/${query.slug}`, {
     skip,
     limit,
@@ -208,7 +208,7 @@ Links.getInitialProps = async ({ query }) => {
 // export async function getServerSideProps({ req, res, params }) {
 //   let skip = 0;
 //   let limit = 1;
-//   const API = "http://hackrio-server.herokuapp.com/api";
+//   const API = "https://hackrio-server.herokuapp.com/api";
 //   const response = await axios.post(`${API}/category/${params.slug}`, {
 //     skip,
 //     limit,
