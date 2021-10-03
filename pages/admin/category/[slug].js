@@ -139,15 +139,15 @@ function Update( {token, oldCategory}){
     );
 };
 
-Admin.getInitialProps=async({ req, query, token})=> {
+Update.getInitialProps = async ({ req, query, token }) => {
   const response = await axios.post(
     `${process.env.API}/category/${query.slug}`
   );
-  return  {
-      oldCategory: response.data.category,
-      token,
-    }
-}
+  return {
+    oldCategory: response.data.category,
+    token,
+  };
+};
 
 
 
