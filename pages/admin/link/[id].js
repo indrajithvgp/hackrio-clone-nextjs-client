@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {useState, useEffect} from 'react'
-import withAdminReq from '../withAdmin'
+import withAdmin from '../withAdmin'
 import Layout from '../../../components/Layout'
 import {showErrorMessage, showSuccessMessage} from '../../../helpers/alerts'
 // import {API} from '../../index'
@@ -9,7 +9,7 @@ import { getCookie, isAuth} from '../../../helpers/auth'
 
 const API = process.env.API;
 const Update = ({oldLink, token})=>{
-    const API = process.env.API;
+    const API = "http://hackrio-server.herokuapp.com/api";
     const [state, setState] = useState({
         title: oldLink.title,
         url: oldLink.url,
@@ -198,20 +198,22 @@ const Update = ({oldLink, token})=>{
     )
 }
 
-// Update.getInitialProps = async ({ req, query, token }) => {
-//     const response = await axios.get(`${process.env.API}/link/${query.id}`);
-//     return { oldLink: response.data, token };
-// };  
-// export default withAdmin(Update)
+Update.getInitialProps = async ({ req, query, token }) => {
+    const response = await axios.get(
+      `http://hackrio-server.herokuapp.com/api/link/${query.id}`
+    );
+    return { oldLink: response.data, token };
+};  
+export default withAdmin(Update)
 
-export const getServerSideProps = withAdminReq(async (context) => {
- const response = await axios.get(`${process.env.API}/link/${context.params.id}`);
-  return {
-    props: {
-      oldLink: response.data,
-      token,
-    },
-  };
-});
+// export const getServerSideProps = withAdminReq(async (context) => {
+//  const response = await axios.get(`${process.env.API}/link/${context.params.id}`);
+//   return {
+//     props: {
+//       oldLink: response.data,
+//       token,
+//     },
+//   };
+// });
 
-export default Update;
+// export default Update;

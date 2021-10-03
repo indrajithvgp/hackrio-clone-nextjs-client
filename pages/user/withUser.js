@@ -2,18 +2,20 @@ import axios from 'axios';
 // import { API } from '../index';
 import { getCookie } from '../../helpers/auth';
 
-const API = process.env.API;
+const API = "http://hackrio-server.herokuapp.com/api";
 
 const withUser = Page => {
+    const API = "http://hackrio-server.herokuapp.com/api";
     const WithAuthUser = props => <Page {...props} />;
     WithAuthUser.getInitialProps = async context => {
+        const API = "http://hackrio-server.herokuapp.com/api";
         const token = getCookie('token', context.req);
         let user = null;
         let userLinks = [];
 
         if (token) {
             try {
-                const response = await axios.get(`${process.env.API}/user`, {
+                const response = await axios.get(`${API}/user`, {
                   headers: {
                     authorization: `Bearer ${token}`,
                     contentType: "application/json",

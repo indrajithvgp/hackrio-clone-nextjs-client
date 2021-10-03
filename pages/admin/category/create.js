@@ -6,14 +6,14 @@ const ReactQuill = dynamic(() => import('react-quill'), {ssr: false})
 import Resizer from "react-image-file-resizer";
 // import {API} from '../../index'
 import Layout from '../../../components/Layout'
-import withAdminReq from '../withAdmin'
+import withAdmin from '../withAdmin'
 import { showErrorMessage, showSuccessMessage } from '../../../helpers/alerts'
 import "react-quill/dist/quill.bubble.css"
 
-const API = process.env.API;
+
 
 const Create = ({token, user})=>{
-
+const API = "http://hackrio-server.herokuapp.com/api";
     // const {token, user} = props
     const [state, setState] = useState({
         name: '',
@@ -136,12 +136,12 @@ const Create = ({token, user})=>{
     )
 }
 
-export const getServerSideProps = withAdminReq(async (context) => {
-  return {
-    props: {
-    },
-  };
-});
-export default Create;
+// export const getServerSideProps = withAdminReq(async (context) => {
+//   return {
+//     props: {
+//     },
+//   };
+// });
+// export default Create;
 
-// export default withAdmin(Create)
+export default withAdmin(Create)

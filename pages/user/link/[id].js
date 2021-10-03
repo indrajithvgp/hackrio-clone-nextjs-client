@@ -6,8 +6,9 @@ import { showErrorMessage, showSuccessMessage } from "../../../helpers/alerts";
 // import {API} from '../../index'
 import { getCookie, isAuth } from "../../../helpers/auth";
 
-const API = process.env.API;
+const API = "http://hackrio-server.herokuapp.com/api";
 const Update = ({ oldLink, token }) => {
+  const API = "http://hackrio-server.herokuapp.com/api";
   const [state, setState] = useState({
     title: oldLink.title,
     url: oldLink.url,
@@ -248,7 +249,8 @@ const Update = ({ oldLink, token }) => {
 //   };
 // }
 Update.getInitialProps = async ({query}) => {
-  const response = await axios.get(`${process.env.API}/link/${query.id}`);
+  const API = "http://hackrio-server.herokuapp.com/api";
+  const response = await axios.get(`${API}/link/${query.id}`);
   console.log("hola link");
   return {
     props: {

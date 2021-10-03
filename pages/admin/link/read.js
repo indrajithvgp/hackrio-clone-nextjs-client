@@ -6,13 +6,13 @@ import renderHTML from 'react-render-html';
 import moment from 'moment';
 // import { API } from '../../index';
 import InfiniteScroll from 'react-infinite-scroller';
-import  withAdminReq from '../withAdmin';
+import  withAdmin from '../withAdmin';
 import { getCookie } from '../../../helpers/auth';
 
 
 const API = process.env.API;
 const Links = ({ data, token, links, totalLinks, linksLimit, linkSkip }) => {
-    const API = process.env.API;
+    const API = "http://hackrio-server.herokuapp.com/api";
     const [allLinks, setAllLinks] = useState(links);
     const [limit, setLimit] = useState(linksLimit);
     const [skip, setSkip] = useState(0);
@@ -20,11 +20,14 @@ const Links = ({ data, token, links, totalLinks, linksLimit, linkSkip }) => {
 
     async function handleDelete(id){
         try{
-            const response = await axios.delete(`${API}/link/${id}`,{
+            const response = await axios.delete(
+              `http://hackrio-server.herokuapp.com/api/link/${id}`,
+              {
                 headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
             console.log("link delete success", response)
             process.browser && window.location.reload()
         }catch(err){
@@ -124,41 +127,14 @@ const Links = ({ data, token, links, totalLinks, linksLimit, linkSkip }) => {
     );
 };
 
-// Links.getInitialProps = async ({ req }) => {
-//     let skip = 0;
-//     let limit = 2;
-
-//     const token = getCookie('token', req);
-
-//     const response = await axios.post(
-//         `${process.env.API}/links`,
-//         { skip, limit },
-//         {
-//             headers: {
-//                 Authorization: `Bearer ${token}`
-//             }
-//         }
-//     );
-//     return {
-//         data: response.data,
-//         links: response.data,
-//         totalLinks: response.data.length,
-//         linksLimit: limit,
-//         linkSkip: skip,
-//         token
-//     };
-// };
-
-// export default withAdmin(Links);
-
-export const getServerSideProps = withAdminReq(async (context) => {
+Links.getInitialProps = async ({ req }) => {
     let skip = 0;
     let limit = 2;
 
-    const token = getCookie("token", req);
+    const token = getCookie('token', req);
 
     const response = await axios.post(
-      `${process.env.API}/links`,
+      `http://hackrio-server.herokuapp.com/api/links`,
       { skip, limit },
       {
         headers: {
@@ -166,20 +142,47 @@ export const getServerSideProps = withAdminReq(async (context) => {
         },
       }
     );
+    return {
+        data: response.data,
+        links: response.data,
+        totalLinks: response.data.length,
+        linksLimit: limit,
+        linkSkip: skip,
+        token
+    };
+};
 
-  return {
-    props: {
-      data: response.data,
-      links: response.data,
-      totalLinks: response.data.length,
-      linksLimit: limit,
-      linkSkip: skip,
-      token,
-    },
-  };
-});
+export default withAdmin(Links);
 
-export default Links;
+// export const getServerSideProps = withAdminReq(async (context) => {
+//     let skip = 0;
+//     let limit = 2;
+
+//     const token = getCookie("token", req);
+
+//     const response = await axios.post(
+//       `${process.env.API}/links`,
+//       { skip, limit },
+//       {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       }
+//     );
+
+//   return {
+//     props: {
+//       data: response.data,
+//       links: response.data,
+//       totalLinks: response.data.length,
+//       linksLimit: limit,
+//       linkSkip: skip,
+//       token,
+//     },
+//   };
+// });
+
+// export default Links;
 {/* <InfiniteScroll
                 pageStart={0}
                 loadMore={loadMore}

@@ -4,11 +4,12 @@ import axios from 'axios';
 import Link from 'next/link';
 import { showSuccessMessage, showErrorMessage } from '../../../helpers/alerts';
 import Layout from '../../../components/Layout';
-import withAdminReq from '../../admin/withAdmin';
+import withAdmin from '../../admin/withAdmin';
 
 
-const API = process.env.API;
+
 const Read = ({ user, token }) => {
+    const API = "http://hackrio-server.herokuapp.com/api";
     const [state, setState] = useState({
         error: '',
         success: '',
@@ -98,10 +99,10 @@ const Read = ({ user, token }) => {
     );
 };
 
-export const getServerSideProps = withAdminReq(async (context) => {
-  return {
-    props: {},
-  };
-});
-export default Read;
-// export default withAdmin(Read);
+// export const getServerSideProps = withAdminReq(async (context) => {
+//   return {
+//     props: {},
+//   };
+// });
+// export default Read;
+export default withAdmin(Read);

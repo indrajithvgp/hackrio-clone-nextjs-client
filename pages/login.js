@@ -7,10 +7,10 @@ import { showErrorMessage, showSuccessMessage } from "../helpers/alerts";
 
 import {authenticate, isAuth} from '../helpers/auth'
 
-const API = process.env.API;
+const API = "http://hackrio-server.herokuapp.com/api";
 
 const Login = () => {
-    const API = process.env.API;
+    const API = "http://hackrio-server.herokuapp.com/api";
 
     const [state, setState] = useState({
         name: '',

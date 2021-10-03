@@ -7,12 +7,13 @@ import {Router} from 'next/router'
 // import { API } from '../../index';
 import { showSuccessMessage, showErrorMessage } from '../../../helpers/alerts';
 import Layout from '../../../components/Layout';
-import withAdminReq from '../withAdmin';
+import withAdmin from '../withAdmin';
 import 'react-quill/dist/quill.bubble.css';
 
-const API = process.env.API;
+// http://hackrio-server.herokuapp.com/api
+
 function Update( {token, oldCategory}){
-    
+    const API = "http://hackrio-server.herokuapp.com/api";
     const [state, setState] = useState({
         name: oldCategory.name,
         error: '',
@@ -138,30 +139,30 @@ function Update( {token, oldCategory}){
     );
 };
 
-// export async function getServerSideProps({ req, res, params }) {
+Admin.getInitialProps=async({ req, query, token})=> {
+  const response = await axios.post(
+    `${process.env.API}/category/${query.slug}`
+  );
+  return  {
+      oldCategory: response.data.category,
+      token,
+    }
+}
+
+
+
+// export const getServerSideProps = withAdminReq(async (context) => {
 //   const response = await axios.post(
-//     `${process.env.API}/category/${params.slug}`
+//     `${process.env.API}/category/${context.params.slug}`
 //   );
 //   return {
 //     props: {
 //       oldCategory: response.data.category,
 //       token,
-//     }, 
+//     },
 //   };
-// }
-
-export const getServerSideProps = withAdminReq(async (context) => {
-  const response = await axios.post(
-    `${process.env.API}/category/${context.params.slug}`
-  );
-  return {
-    props: {
-      oldCategory: response.data.category,
-      token,
-    },
-  };
-});
+// });
 
  
-export default Update;
-// export default withAdmin(Update);
+// export default Update;
+export default withAdmin(Update);

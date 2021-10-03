@@ -8,8 +8,9 @@ import {withRouter} from 'next/router'
 import Layout from '../../../components/Layout'
 
 
-const API = process.env.API;
+const API = "http://hackrio-server.herokuapp.com/api";
 const ActivateAccount = ({router}) => {
+    const API = "http://hackrio-server.herokuapp.com/api";
     const [state, setState] = useState({
         name: '',
         token:'',
